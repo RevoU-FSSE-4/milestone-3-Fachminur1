@@ -22,29 +22,26 @@ def get_transaction(id):
 @jwt_required()
 def create_transaction():
     user_id = get_jwt_identity()
-    from_account_id = request.form.get('from_account_id')
-    print (request.form.get('from_account_id'))
-    to_account_id = request.form.get('to_account_id')
-    print (request.form.get('transaction_type'))
-    amount = request.form.get('amount')
-    print (request.form.get('amount'))
-    transaction_type = request.form.get('transaction_type')
-    print (request.form.get('transaction_type'))
-    description = request.form.get('description')
+    
+    data = request.json
+    
+    from_account_id = data.get('from_account_id')
+    to_account_id = data.get('to_account_id')
+    amount = data.get('amount')
+    transaction_type = data.get('transaction_type')
+    description = data.get('description')
 
     if not from_account_id or not amount or not transaction_type:
         return jsonify({"error": "Missing required fields"}), 400
     
-
     try:
         amount = float(amount)
     except ValueError:
         return jsonify({"error": "Invalid amount"}), 400
 
     from_account = Account.query.filter_by(id=from_account_id, user_id=user_id).first_or_404()
-    to_account = Account.query.filter_by(id=to_account_id).first_or_404() if to_account_id else None
+    to_account = Account.query.filter_by(id=to_account_id).first() if to_account_id else None
 
- 
     transaction = Transaction(
         from_account_id=from_account.id,
         to_account_id=to_account.id if to_account else None,
@@ -55,6 +52,5 @@ def create_transaction():
     
     db.session.add(transaction)
     db.session.commit()
-    
 
     return jsonify({"message": "Transaction created successfully"}), 201

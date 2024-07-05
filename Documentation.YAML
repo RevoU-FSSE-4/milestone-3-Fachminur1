@@ -1,0 +1,241 @@
+info:
+  _postman_id: d0e01ffd-7c2b-4d5f-aa99-66fa5e8c4517
+  name: BankingApp
+  schema: https://schema.getpostman.com/json/collection/v2.1.0/collection.json
+  _exporter_id: '34484533'
+item:
+  - name: Auth
+    item:
+      - name: Register User
+        request:
+          method: POST
+          header: []
+          body:
+            mode: formdata
+            formdata:
+              - key: username
+                value: fahmi12
+                type: text
+              - key: email
+                value: fahmi12@mail.com
+                type: text
+              - key: password
+                value: '123123123'
+                type: text
+          url:
+            raw: http://127.0.0.1:5000/auth/register
+            protocol: http
+            host:
+              - '127'
+              - '0'
+              - '0'
+              - '1'
+            port: '5000'
+            path:
+              - auth
+              - register
+        response: []
+      - name: Login User
+        request:
+          method: POST
+          header: []
+          body:
+            mode: formdata
+            formdata:
+              - key: username
+                value: fahmi
+                type: text
+              - key: password
+                value: '123123'
+                type: text
+          url:
+            raw: http://127.0.0.1:5000/auth/login
+            protocol: http
+            host:
+              - '127'
+              - '0'
+              - '0'
+              - '1'
+            port: '5000'
+            path:
+              - auth
+              - login
+        response: []
+      - name: Update User
+        protocolProfileBehavior:
+          disableBodyPruning: true
+        request:
+          auth:
+            type: bearer
+            bearer:
+              - key: token
+                value: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDEwMTUyOCwianRpIjoiOGY3NWE3Y2MtNDlmZi00NTBkLWE3NjktNGE0Y2E2ZGM0YTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzIwMTAxNTI4LCJjc3JmIjoiYzYzYzg2OTYtODdlOC00NzYzLWI3YjUtYmMwODJhZTFlZjQ3IiwiZXhwIjoxNzIwMTAyNDI4fQ.jQvJXZh_nSqKAvpieRu8CrOixwzrCV-dpaceAj8GVl4
+                type: string
+          method: GET
+          header:
+            - key: Authorization
+              value: >-
+                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDEwMTUyOCwianRpIjoiOGY3NWE3Y2MtNDlmZi00NTBkLWE3NjktNGE0Y2E2ZGM0YTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzIwMTAxNTI4LCJjc3JmIjoiYzYzYzg2OTYtODdlOC00NzYzLWI3YjUtYmMwODJhZTFlZjQ3IiwiZXhwIjoxNzIwMTAyNDI4fQ.jQvJXZh_nSqKAvpieRu8CrOixwzrCV-dpaceAj8GVl4
+              type: text
+          body:
+            mode: raw
+            raw: ''
+            options:
+              raw:
+                language: json
+          url:
+            raw: http://127.0.0.1:5000/auth/profile
+            protocol: http
+            host:
+              - '127'
+              - '0'
+              - '0'
+              - '1'
+            port: '5000'
+            path:
+              - auth
+              - profile
+        response: []
+  - name: Account
+    item:
+      - name: Get Account
+        request:
+          auth:
+            type: bearer
+            bearer:
+              - key: token
+                value: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDE4MjEwNywianRpIjoiZDY0ZmYyYWQtNWE0NC00OGEyLTgwYzctYjkwOGU1ZTNmNWE5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzIwMTgyMTA3LCJjc3JmIjoiYTQ5ZjA2YmYtZDI2ZC00NTcxLTgyYmYtOGY3ZGU2NWQwMTJiIiwiZXhwIjoxNzIwMTgzMDA3fQ.BvfODuNGc2R0tNhOPjglEpQO4Jo90oHMHO3cXJ94s-g
+                type: string
+          method: GET
+          header:
+            - key: Content-Type
+              value: application/json
+              type: text
+          url:
+            raw: http://localhost:5000/accounts/
+            protocol: http
+            host:
+              - localhost
+            port: '5000'
+            path:
+              - accounts
+              - ''
+        response: []
+      - name: Get Account ID
+        request:
+          auth:
+            type: bearer
+            bearer:
+              - key: token
+                value: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDEwMjg5MywianRpIjoiOWM2N2NiNDgtNjFmZC00MjA3LThkMzItYTgxN2I1OGU4YjFiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNzIwMTAyODkzLCJjc3JmIjoiN2QzZWU4ZjctZmQ4My00NzFiLTk4YWYtMzE0OTdmMzNlNzI4IiwiZXhwIjoxNzIwMTAzNzkzfQ.XiiZu0lapig1F9o4jkQPQkE_BKDPLwLlZR5Ki9cg_3I
+                type: string
+          method: GET
+          header: []
+          url:
+            raw: http://localhost:5000/accounts/<account_id>
+            protocol: http
+            host:
+              - localhost
+            port: '5000'
+            path:
+              - accounts
+              - '<account_id>'
+        response: []
+      - name: Create Account
+        request:
+          auth:
+            type: bearer
+            bearer:
+              - key: token
+                value: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDE4MzIwOCwianRpIjoiYWY4ODI3ZTgtODM2Ny00ODVjLTgyMDctZjAyODgyY2VmODAzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzIwMTgzMjA4LCJjc3JmIjoiMzBhODRlMTgtNmFmYi00ZTBhLWIzNmQtOWEzMDRiOTA0OTA1IiwiZXhwIjoxNzIwMTg0MTA4fQ.420kaFnxPS3tpzGnG9exnKOoxMGCISjStA_QktC1YIc
+                type: string
+          method: POST
+          header: []
+          body:
+            mode: urlencoded
+            urlencoded:
+              - key: account_type
+                value: Savings
+                type: text
+              - key: account_number
+                value: '102'
+                type: text
+              - key: balance
+                value: '1000000'
+                type: text
+          url:
+            raw: http://localhost:5000/accounts/
+            protocol: http
+            host:
+              - localhost
+            port: '5000'
+            path:
+              - accounts
+              - ''
+        response: []
+  - name: Transaction
+    item:
+      - name: Get Transactions
+        request:
+          auth:
+            type: bearer
+            bearer:
+              - key: token
+                value: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDE4Mjg2MSwianRpIjoiOTliOTMwMmQtMzA3NS00MDJhLWFlZjYtMjFjNjIxZGJlNTlhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzIwMTgyODYxLCJjc3JmIjoiN2IwZDE1ZTktODM0OS00ODA5LWJiNTUtMjI3MjBlOWU4ZjJkIiwiZXhwIjoxNzIwMTg0NjYxfQ.-B8swn2eHj9pCAtVVytf35tllMKIBHKlRSQw3NwK_Rs
+                type: string
+          method: GET
+          header: []
+          url:
+            raw: http://localhost:5000/transactions/
+            protocol: http
+            host:
+              - localhost
+            port: '5000'
+            path:
+              - transactions
+              - ''
+        response: []
+      - name: Create Transaction
+        request:
+          auth:
+            type: bearer
+            bearer:
+              - key: token
+                value: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDE4NDQwNiwianRpIjoiMTIxMTBlYmQtYTQ5Ny00M2UwLWI1YmItM2I4ZmZiYmY4NTMzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzIwMTg0NDA2LCJjc3JmIjoiZGE5NDg1NzItZjMzMi00M2M0LWI1ZDUtMmE5ZmZjOWY2N2ZlIiwiZXhwIjoxNzIwMTg0NjA2fQ.A7LOA-YgD2LH7e--3nJyS-LDCyJYzF04nJ3Edq0PL5w
+                type: string
+          method: POST
+          header: []
+          body:
+            mode: urlencoded
+            urlencoded:
+              - key: from_account_id
+                value: '1'
+                type: text
+              - key: to_account_id
+                value: '2'
+                type: text
+              - key: amount
+                value: '1000'
+                type: text
+              - key: transaction_type
+                value: Transfer
+                type: text
+              - key: description
+                value: Transfer from Account 1 to Account 2
+                type: text
+          url:
+            raw: http://localhost:5000/transactions/
+            protocol: http
+            host:
+              - localhost
+            port: '5000'
+            path:
+              - transactions
+              - ''
+        response: []

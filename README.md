@@ -41,28 +41,34 @@ Replace username, password, localhost, and dbname with your actual database cred
 ## API Endpoints
 1. User Management
     POST /auth/register: Create a new user account.
+    ![alt text](image.png)
     POST /auth/login: Authenticate user and generate session token.
+    ![alt text](image-1.png)
     POST /auth/logout: Logout the currently authenticated user.
+    ![alt text](image-2.png)
 
 2. Account Management
     GET /accounts: Retrieve all accounts.
+    ![alt text](image-3.png)
     GET /accounts/:id: Retrieve details of a specific account.
     POST /accounts: Create a new account.
+    ![alt text](image-4.png)
     PUT /accounts/:id: Update details of an existing account.
     DELETE /accounts/:id: Delete an account.
 3. Transaction Management
     GET /transactions: Retrieve all transactions.
+    ![alt text](image-5.png)
     GET /transactions/:id: Retrieve details of a specific transaction.
     POST /transactions: Create a new transaction (deposit, withdrawal, transfer).
-4. Budget Management
-    - POST /budgets: Create a new budget category.
-    - GET /budgets: Retrieve all budget categories.
-    - PUT /budgets/:id: Update an existing budget category.
-5. Bill Management
-    - POST /bills: Schedule a bill payment.
-    - GET /bills: Retrieve all scheduled bill payments.
-    - PUT /bills/:id: Update details of a scheduled bill payment.
-    - DELETE /bills/:id: Cancel a scheduled bill payment.
+    ![alt text](image-6.png)
+
+4. Database Management
+    Stored Users
+    ![alt text](image-7.png)
+    Stored Accounts
+    ![alt text](image-8.png)
+    Stored Transaction
+    ![alt text](image-9.png)
 
 ## Error Handling
 Proper error handling and validation are implemented for each endpoint to handle potential errors and provide meaningful error messages.
