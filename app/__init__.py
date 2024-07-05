@@ -3,6 +3,8 @@ from app.extensions import db, migrate, jwt, login_manager
 from app.config import Config
 from app.routes import auth_bp, accounts_bp, transactions_bp
 from flask_swagger_ui import get_swaggerui_blueprint
+from app.routes.transactions import transactions_bp
+
 
 def create_app():
     app = Flask(__name__)
@@ -15,7 +17,7 @@ def create_app():
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(accounts_bp, url_prefix='/accounts')
-    app.register_blueprint(transactions_bp, url_prefix='/transactions')
+    app.register_blueprint(transactions_bp)
 
     SWAGGER_URL = '/swagger'
     API_URL = '/static/swagger.json'

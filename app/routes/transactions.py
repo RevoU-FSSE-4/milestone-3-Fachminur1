@@ -3,7 +3,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.models import Transaction, Account
 from app.extensions import db
 
-transactions_bp = Blueprint('transactions', __name__)
+transactions_bp = Blueprint('transactions',__name__,url_prefix = "/transactions")
 
 @transactions_bp.route('/', methods=['GET'])
 @jwt_required()
@@ -23,14 +23,28 @@ def get_transaction(id):
 def create_transaction():
     user_id = get_jwt_identity()
     from_account_id = request.form.get('from_account_id')
+    print (request.form.get('from_account_id'))
     to_account_id = request.form.get('to_account_id')
-    amount = float(request.form.get('amount'))
+    print (request.form.get('transaction_type'))
+    amount = request.form.get('amount')
+    print (request.form.get('amount'))
     transaction_type = request.form.get('transaction_type')
+    print (request.form.get('transaction_type'))
     description = request.form.get('description')
+
+    if not from_account_id or not amount or not transaction_type:
+        return jsonify({"error": "Missing required fields"}), 400
+    
+
+    try:
+        amount = float(amount)
+    except ValueError:
+        return jsonify({"error": "Invalid amount"}), 400
 
     from_account = Account.query.filter_by(id=from_account_id, user_id=user_id).first_or_404()
     to_account = Account.query.filter_by(id=to_account_id).first_or_404() if to_account_id else None
-    
+
+ 
     transaction = Transaction(
         from_account_id=from_account.id,
         to_account_id=to_account.id if to_account else None,
@@ -39,11 +53,8 @@ def create_transaction():
         description=description
     )
     
-    from_account.balance -= transaction.amount
-    if to_account:
-        to_account.balance += transaction.amount
-    
     db.session.add(transaction)
     db.session.commit()
     
-    return jsonify(transaction.to_dict()), 201
+
+    return jsonify({"message": "Transaction created successfully"}), 201

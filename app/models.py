@@ -2,7 +2,6 @@ from datetime import datetime
 from app.extensions import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
@@ -16,6 +15,15 @@ class User(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+        }
 
 class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -33,9 +41,9 @@ class Account(db.Model):
             'user_id': self.user_id,
             'account_type': self.account_type,
             'account_number': self.account_number,
-            'balance': float(self.balance),  # Convert Numeric to float for JSON serialization
-            'created_at': self.created_at.isoformat(),
-            'updated_at': self.updated_at.isoformat() if self.updated_at else None
+            'balance': float(self.balance),
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
         }
 
 class Transaction(db.Model):
@@ -48,3 +56,14 @@ class Transaction(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     from_account = db.relationship('Account', foreign_keys=[from_account_id])
     to_account = db.relationship('Account', foreign_keys=[to_account_id])
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'from_account_id': self.from_account_id,
+            'to_account_id': self.to_account_id,
+            'amount': float(self.amount),
+            'transaction_type': self.transaction_type,
+            'description': self.description,
+            'created_at': self.created_at,
+        }
