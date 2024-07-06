@@ -72,3 +72,6 @@ Replace username, password, localhost, and dbname with your actual database cred
 
 ## Error Handling
 Proper error handling and validation are implemented for each endpoint to handle potential errors and provide meaningful error messages.
+
+## POSTMAN Documentation
+https://documenter.getpostman.com/view/34484533/2sA3e1AUpx
